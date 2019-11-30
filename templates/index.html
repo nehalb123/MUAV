@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="google-site-verification" content="7PQNxRfYtVCXpmmI49WJH1_u5BAmTh0FHfZNGjvPavM" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<title>Multipurpose UAV</title>
+
+	<!--CSS-->
+	<link rel="stylesheet" href="./static/css/css/components.css">
+	
+	<link rel="stylesheet" href="./static/css/css/responsee.css">
+	<link rel="stylesheet" href="./static/css/css/owl.carousel.css">
+	
+	<link rel="stylesheet" href="./static/css/css/owl.theme.css">
+	<link rel="stylesheet" href="./static/css/css/template-style.css">
+
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway|Titillium+Web" rel="stylesheet">
+
+
+	<script type="text/javascript" src="./static/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="./static/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./static/js/custom-file-input.js"></script>
+	<script type="text/javascript" src="./static/js/jquery-v1.min.js"></script>
+	<script type="text/javascript" src="./static/js/jquery.custom-file-input.js"></script>
+	<script type="text/javascript" src="./static/js/responsee.js"></script>
+	<script type="text/javascript" src="./static/js/owl.carousel.js"></script>
+	<script type="text/javascript" src="./static/js/template-scripts.js"></script>
+
+</head>
+
+
+
+<body class="size-1140 primary-color-red">
+	<!-- HEADER -->
+	<header role="banner" class="position-absolute">
+		<!-- Top Navigation -->
+		<nav class="background-transparent background-transparent-hightlight full-width sticky">
+
+		<div class="top-nav s-12 l-10">
+			<p class="nav-text"></p>
+			<ul class="right chevron">
+				<li class="active-item">
+					<a href="{{url_for('signup')}}"><b>Sign Up</b></a>
+				</li>
+				<li ><a href="/about"><b>About</b></a></li>
+				{% if not loggedIn %}
+				<li ></li>
+				{% else %}
+				<li> <a href="#"><b>Hello {{name}}</b></a>
+					<ul>
+						<li><a href="/stat">Stats</a></li>
+						<li><a href="/logout">Logout</a></li>
+					</ul>
+				</li> 
+				{% endif %}                    
+			</ul>
+		</div>
+	</nav>
+</header>
+
+<!-- MAIN -->
+<main role="main">
+	<!-- Main Header -->
+	<header>
+		<div class="carousel-default owl-carousel carousel-main carousel-nav-white background-dark text-center ">
+			<div class="item ">
+				<div class="s-12 " >
+					<img src="./static/img/header.jpg" alt="Header img UAV">
+					<div class="carousel-content ">
+						<div class="content-center-vertical line ">
+							<div class="">
+								<!-- Title -->
+								<br>
+								<h1 class="animated-carousel-element text-white text-size-60 text-m-size-30 text-line-height-1">Multipurpose Unmanned Autonomous Vehicle</h1>
+								
+								<div class="s-12 m-10 l-8 center"><p class="animated-carousel-element text-white text-size-22 margin-bottom-30"><b>Kinecting remote locations.</b></p>
+								</div>                    
+								<div class="line center" >                      
+									<div class="center l-6 s-12 m-12" >
+										<div class="float-left s-12 m-12 l-6 " ">                          
+											<a class="button button-white-stroke margin-bottom-20" href="#insight">Insight</a> </div>
+											<div class="float-left s-12 m-12 l-6">
+												
+												<a class="button button-white-stroke margin-bottom-20" href="{{ url_for('loginform') }}">Log In</a> 
+
+											</div>
+										</div>
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+</main>  
+
+<section class="background-white text-center" >                             
+
+	<div class="s-12 m-12 l-12 background-primary" ><p class=" padding text-size-22">A project based on ROS and Artificial Intelligence</p></div> 
+
+</section>
+
+
+
+<section class="full-width background-dark ">
+	<div class="line padding-2x" >
+		<h2 class="text-size-40" id="insight" >Insight</h2>
+		<hr class="break-small background-primary ">
+		<p class="text-size-22">
+			This UAV will help the first responders to get acquainted of the surroundings before-hand. This would help pre-planning and also fasten the process of search and rescue operations.<br>
+			The first responder will be assisted by a robot which will enter the scenario initially. This robot will autonomously trace a path between obstacles and debris lying around the scene. While tracing the path, the robot will map the surrounding area using a depth mapping sensor/camera. This data will be fed back to a host system which will develop a 3D map to assist the officials in making decisions. Sensors on the robot will also convey vital information regarding environmental parameters surrounding the scenario. Locomotion is done with the help of Brush-less DC Motors interfaced with the processor through a motor driver. The Industrial Grade motor drivers are internally interfaced using the CAN protocol and controlled using the serial port of the processor. Commands to the motor driver are sent with the help of Bash files (in the form of direction and RPM) also crucial in decision making. Kinect produces a cloud point matrix with the help of IR radiations. This data is then fed to the GPU. The Robotic Operating System (ROS) running on the processor interprets this data. It has a built-in library for Kinect and using this the 3D map of the data is processed. The cloud point matrix given by Kinect is sent through Wi-Fi to the host.
+
+		</p>
+	</div>
+</section>
+
+		</body>
+		</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+
+<body style="background-color: #002633">
+    <div class="container">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" style="border-color: #74ad32;">
+                <div class="panel-heading" style="background: linear-gradient(to top, #B5AC49, #3CA55C); color:#e4e5e6">
+                    <div class="panel-title">Sign In</div>
+                    <div style="float:right; font-size: 95%; position: relative; top:-10px"><a href="#" style="color:#eef3f7">Forgot password?</a></div>
+                </div>     
+
+                <div style="padding-top:30px" class="panel-body" >
+
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+
+                    <form action="/login" class="form-horizontal" role="form" method='post'>
+
+                     {%if error=="Registered Successfully!" %}
+                     <div class="alert alert-success">
+                        <strong>Hello {{name}}!</strong> 
+                        {{error}}
+                    </div>
+                    {% elif error=="" %}
+                    <div></div>
+                    {% else %}
+                    <div class="alert alert-danger">
+                     {{error}}
+                 </div> 
+                 {% endif %}
+
+                 <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input id="login-username" type="text" class="form-control" name="email" value="" placeholder="Username or Email">                                        
+                </div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input id="login-password" type="password" class="form-control" name="passwd" placeholder="Password">
+                </div>
+
+
+
+                <div class="input-group">
+                  <div class="checkbox">
+                    <label>
+                      <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                  </label>
+              </div>
+          </div>
+
+
+          <div style="margin-top:10px" class="form-group">
+            <!-- Button -->
+
+            <div class="col-sm-12 controls">
+              <button id="btn-signup" type="submit" class="btn btn-success">
+                <i class="icon-hand-right"></i>
+                Log in
+            </button>
+        </div>
+    </div>
+</form>
+
+    <div class="form-group">
+        <div class="col-md-12 control">
+            <div style="border-top: 1px solid#888; padding-top:15px">
+                Don't have an account! 
+                <a href="{{url_for('signup')}}">
+                    Sign Up Here
+                </a>
+            </div>
+        </div>
+    </div>    
+    
+</div>                     
+</div>  
+</div>
+</div>
+</body>
+</html>
