@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(roboteq)
+project(crabbot_2d_nav)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -7,7 +7,16 @@ project(roboteq)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs)
+find_package(catkin REQUIRED COMPONENTS
+  geometry_msgs
+  nav_msgs
+  roscpp
+  rospy
+  sensor_msgs
+  std_msgs
+  tf
+  turtlesim
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -63,12 +72,11 @@ find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs)
 #   Action2.action
 # )
 
-# Generate added messages and services with any dependencies listed here
+## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   geometry_msgs
+#   geometry_msgs#   nav_msgs#   sensor_msgs#   std_msgs
 # )
-
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -95,24 +103,16 @@ find_package(catkin REQUIRED COMPONENTS roscpp sensor_msgs)
 ###################################
 ## The catkin_package macro generates cmake config files for your package
 ## Declare things to be passed to dependent projects
-## INCLUDE_DIRS: uncomment this if your package contains header files
+## INCLUDE_DIRS: uncomment this if you package contains header files
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-    CATKIN_DEPENDS
-    #INCLUDE_DIRS roboteq/Constants.h ErrorCodes.h RoboteqDevice.cpp RoboteqDevice.
-    LIBRARIES ${PROJECT_NAME}
-    CATKIN_DEPENDS roscpp
-#    DEPENDS termios.h
-)
-
-#catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES roboteq
-#  CATKIN_DEPENDS other_catkin_pkg
+#  LIBRARIES crabbot_2d_nav
+#  CATKIN_DEPENDS geometry_msgs nav_msgs roscpp rospy sensor_msgs std_msgs tf turtlesim
 #  DEPENDS system_lib
-#)
+)
 
 ###########
 ## Build ##
@@ -120,27 +120,14 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-#include_directories(
+include_directories(
 # include
-# ${catkin_INCLUDE_DIRS}
-#)
-include_directories(include ${catkin_INCLUDE_DIRS})
-#THE LIBRARIES INCLUDES IN THE CODE
-add_library(roboteq_lib Sub.cpp Constants.h ErrorCodes.h RoboteqDevice.cpp RoboteqDevice.h)
-target_link_libraries(roboteq_lib ${catkin_LIBRARIES})
-
-add_executable(sub Sub.cpp Constants.h ErrorCodes.h RoboteqDevice.cpp RoboteqDevice.h)
-target_link_libraries(sub ${catkin_LIBRARIES})
-set_target_properties(sub PROPERTIES COMPILE_FLAGS -g)
-
-add_dependencies(roboteq_lib ${catkin_EXPORTED_TARGETS})
-add_dependencies(sub ${catkin_EXPORTED_TARGETS})
-#	add_dependencies(sub sub_generate_messages_cpp)
-
+  ${catkin_INCLUDE_DIRS}
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/roboteq.cpp
+#   src/${PROJECT_NAME}/crabbot_2d_nav.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -151,7 +138,7 @@ add_dependencies(sub ${catkin_EXPORTED_TARGETS})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/sub.cpp)
+# add_executable(${PROJECT_NAME}_node src/crabbot_2d_nav_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -208,7 +195,7 @@ add_dependencies(sub ${catkin_EXPORTED_TARGETS})
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_roboteq.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_crabbot_2d_nav.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
